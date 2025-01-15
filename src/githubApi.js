@@ -1,5 +1,6 @@
 const { GITHUB_API, HEADERS } = require("./config");
-async function fetchGitHub(url, options = {}) {
+
+const fetchGitHub = async (url, options = {}) => {
   const response = await fetch(`${GITHUB_API}${url}`, {
     headers: HEADERS,
     ...options,
@@ -11,20 +12,14 @@ async function fetchGitHub(url, options = {}) {
   }
 
   return response.json();
-}
+};
 
-async function getNotifications() {
-  return fetchGitHub("/notifications");
-}
+const getNotifications = async () => fetchGitHub("/notifications");
 
-async function getIssueOrPRStatus(repoOwner, repoName, issueOrPrNumber, type) {
-  return fetchGitHub(
-    `/repos/${repoOwner}/${repoName}/${type}/${issueOrPrNumber}`
-  );
-}
+const getIssueOrPRStatus = async (repoOwner, repoName, issueOrPrNumber, type) =>
+  fetchGitHub(`/repos/${repoOwner}/${repoName}/${type}/${issueOrPrNumber}`);
 
-async function markAsDone(threadId) {
-  return fetchGitHub(`/notifications/threads/${threadId}`, { method: "PATCH" });
-}
+const markAsDone = (threadId) =>
+  fetchGitHub(`/notifications/threads/${threadId}`, { method: "PATCH" });
 
 module.exports = { getNotifications, getIssueOrPRStatus, markAsDone };
