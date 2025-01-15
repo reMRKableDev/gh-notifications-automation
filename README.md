@@ -1,5 +1,9 @@
 # GitHub Notifications Automation 🚀
 
+[![Auto-Merge Dependency PRs](https://github.com/reMRKableDev/react-omdb-api/actions/workflows/dependency-automerge.yml/badge.svg)](https://github.com/reMRKableDev/react-omdb-api/actions/workflows/dependency-automerge.yml)
+[![tests](https://github.com/reMRKableDev/react-omdb-api/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/reMRKableDev/react-omdb-api/actions/workflows/test-coverage.yml)
+[![codecov](https://codecov.io/gh/reMRKableDev/gh-notifications-automation/graph/badge.svg?token=ZcOwgC81Pw)](https://codecov.io/gh/reMRKableDev/gh-notifications-automation)
+
 This repo contains a script that automates the process of checking GitHub notifications and marking merged or closed PRs/issues as **_"done."_**
 
 The script uses the GitHub API to streamline the workflow for developers managing large volumes of notifications.
@@ -112,8 +116,8 @@ The repo is currently configured with the following coverage thresholds:
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-
 ---
+
 Let me know if you'd like me to adjust anything further! 😊
 
 Made with ❤️ by [reMRKable Dev](https://remrkabledev.com)
