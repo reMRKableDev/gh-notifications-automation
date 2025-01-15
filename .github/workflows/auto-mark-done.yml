@@ -1,9 +1,9 @@
-name: Auto-Mark-Done
+name: Mark Notifications as Done
 
 on:
   schedule:
-    - cron: "59 23 * * *" # Runs at 11:59 PM every day
-  workflow_dispatch:
+    - cron: "59 22 * * *" # Runs at 10:59 PM UTC (11:59 PM Amsterdam Time in winter)
+  workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
   run-script:
@@ -17,6 +17,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
+
+      - name: Log Current Time (Debugging)
+        run: date -u && date
 
       - name: Install Dependencies
         run: npm install
