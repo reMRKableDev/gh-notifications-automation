@@ -9,7 +9,16 @@
     "coverage": "jest --coverage"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "coverageDirectory": "./coverage/",
+    "coverageThreshold": {
+      "global": {
+        "branches": 60,
+        "functions": 100,
+        "lines": 85,
+        "statements": 88
+      }
+    }
   },
   "keywords": [
     "automation",
