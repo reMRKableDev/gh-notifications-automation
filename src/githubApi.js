@@ -1,6 +1,4 @@
 const { GITHUB_API, HEADERS } = require("./config");
-console.log("🚀 ~ HEADERS:", HEADERS);
-console.log("🚀 ~ GITHUB_API:", GITHUB_API);
 
 const fetchGitHub = async (url, options = {}) => {
   try {
