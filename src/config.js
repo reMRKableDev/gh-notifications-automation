@@ -1,6 +1,10 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
+console.log("🚀 ~ process.env.NODE_ENV:", process.env.NODE_ENV);
+console.log("🚀 ~ process.env.GH_TOKEN:", process.env.GH_TOKEN);
+console.log("🚀 ~ process.env.GH_USERNAME:", process.env.GH_USERNAME);
+
 module.exports = {
   GITHUB_API: "https://api.github.com",
   GITHUB_TOKEN: process.env.GH_TOKEN,
