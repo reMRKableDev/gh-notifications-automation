@@ -18,17 +18,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ✅ Step 1: Checkout the repo (Fixes "not a git repository" issue)
+      # ✅ Step 1: Checkout the repo
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # ✅ Step 2: Authenticate GitHub CLI (Ensure gh CLI works)
+      # ✅ Step 2: Authenticate GitHub CLI
       - name: Authenticate GitHub CLI
         run: gh auth setup-git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # ✅ Step 3: Fetch all PRs sorted from oldest to newest
+      # ✅ Step 3: Set Git User Identity (Fixes "Please tell me who you are" issue)
+      - name: Set Git User Identity
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+
+      # ✅ Step 4: Fetch all PRs sorted from oldest to newest
       - name: Get Oldest PRs
         id: get-prs
         run: |
@@ -37,7 +43,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # ✅ Step 4: Process PRs One by One
+      # ✅ Step 5: Process PRs One by One
       - name: Process PRs
         run: |
           for pr in $prs; do
@@ -56,8 +62,6 @@ jobs:
             # Commit & push resolved conflicts
             git commit -m "Resolve dependency conflicts in PR #$pr" || true
             git push origin HEAD || true
-            # Approve PR before merging
-            gh pr review $pr --approve
             # Merge PR when all checks pass
             gh pr merge $pr --squash --auto
             echo "Merged PR #$pr successfully!"
