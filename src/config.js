@@ -1,5 +1,6 @@
-require(dotenv).config();
-
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 module.exports = {
   GITHUB_API: "https://api.github.com",
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
