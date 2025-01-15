@@ -1,6 +1,5 @@
 # GitHub Notifications Automation 🚀
 
-[![Auto-Merge Dependency PRs](https://github.com/reMRKableDev/react-omdb-api/actions/workflows/dependency-automerge.yml/badge.svg)](https://github.com/reMRKableDev/react-omdb-api/actions/workflows/dependency-automerge.yml)
 [![tests](https://github.com/reMRKableDev/react-omdb-api/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/reMRKableDev/react-omdb-api/actions/workflows/test-coverage.yml)
 [![codecov](https://codecov.io/gh/reMRKableDev/gh-notifications-automation/graph/badge.svg?token=ZcOwgC81Pw)](https://codecov.io/gh/reMRKableDev/gh-notifications-automation)
 
