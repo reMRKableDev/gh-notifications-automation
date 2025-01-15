@@ -75,7 +75,7 @@ This repo includes a GitHub Actions workflow to run the script periodically in t
 ### How to Set Up the Workflow
 
 1. Add the following GitHub Secrets to your repository:
-   - `GH_PAT` → Your GitHub Personal Access Token.
+   - `GH_TOKEN` → Your GitHub Personal Access Token.
    - `GH_USERNAME` → Your GitHub username.
 2. The included workflow (`auto-mark-done.yml`) will:
    - Run the automation every hour.
