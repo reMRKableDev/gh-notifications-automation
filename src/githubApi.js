@@ -19,8 +19,7 @@ const fetchGitHub = async (url, options = {}) => {
   }
 };
 
-const getNotifications = async () =>
-  (await fetchGitHub("/notifications")) || [];
+const getNotifications = async () => fetchGitHub("/notifications");
 
 const getIssueOrPRStatus = async (repoOwner, repoName, issueOrPrNumber, type) =>
   fetchGitHub(`/repos/${repoOwner}/${repoName}/${type}/${issueOrPrNumber}`);

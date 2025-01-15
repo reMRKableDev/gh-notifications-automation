@@ -17,7 +17,7 @@ describe("GH API Helpers", () => {
       fetchMock.mockResponseOnce("", { status: 500 });
 
       const notifications = await getNotifications();
-      expect(notifications).toEqual([]);
+      expect(notifications).toBeNull();
     });
 
     test("should successfully return notifications", async () => {
