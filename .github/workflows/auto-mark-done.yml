@@ -1,9 +1,9 @@
-name: Auto-Mark-Done
+name: Mark Notifications as Done
 
 on:
   schedule:
-    - cron: "59 23 * * *" # Runs daily at 11:59 PM
-  workflow_dispatch: # Allows manual runs
+    - cron: "59 22 * * *" # Runs at 10:59 PM UTC (11:59 PM Amsterdam Time in winter)
+  workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
   run-script:
@@ -11,12 +11,15 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set Up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "lts/*"
+
+      - name: Log Current Time (Debugging)
+        run: date -u && date
 
       - name: Install Dependencies
         run: npm install
@@ -24,5 +27,6 @@ jobs:
       - name: Run Automation Script
         run: node src/index.js
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          NODE_ENV: production
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_USERNAME: ${{ secrets.GH_USERNAME }}

@@ -1,15 +1,37 @@
 {
   "name": "github-notifications-automation",
   "version": "1.0.0",
-  "description": "",
+  "description": "GH automation that periodically checks notifications. It filters out merged or closed PRs/issues and marks them as 'done'.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "./coverage/",
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 100,
+        "lines": 89,
+        "statements": 90
+      }
+    }
+  },
+  "keywords": [
+    "automation",
+    "github",
+    "notifications"
+  ],
+  "author": "Malcolm R. Kente (reMRKable Dev)",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3"
   }
 }
