@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "GH automation that periodically checks notifications. It filters out merged or closed PRs/issues and marks them as 'done'.",
   "main": "index.js",
-  "type":"module",
   "scripts": {
     "start": "node src/index.js",
     "test": "jest",
