@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "GH automation that periodically checks notifications. It filters out merged or closed PRs/issues and marks them as 'done'.",
   "main": "index.js",
+  "type":"module",
   "scripts": {
     "start": "node src/index.js",
     "test": "jest",
@@ -28,7 +29,8 @@
   "author": "Malcolm R. Kente (reMRKable Dev)",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "jest": "^29.7.0",

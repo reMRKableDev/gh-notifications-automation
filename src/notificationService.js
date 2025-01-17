@@ -4,9 +4,10 @@ const {
   getIssueOrPRStatus,
   markAsDone,
 } = require("./githubApi");
+const logger = require("./logger");
 
 const processNotifications = async () => {
-  console.log("🔄 Checking GitHub notifications...");
+  logger.info("🔄 Checking GitHub notifications...");
 
   const notifications = await getNotifications();
   if (!notifications) return;
