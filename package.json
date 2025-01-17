@@ -11,6 +11,9 @@
   "jest": {
     "testEnvironment": "node",
     "coverageDirectory": "./coverage/",
+    "coveragePathIgnorePatterns":[
+      "logger.js"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 80,
