@@ -17,7 +17,7 @@ const processNotifications = async () => {
 
     // Skip notifications from organization-owned repos
     if (repository.owner.login !== GITHUB_USERNAME) {
-      console.log(`Skipping ${repository.full_name} (not owned by you)`);
+      logger.info(`Skipping ${repository.full_name} (not owned by you)`);
       continue;
     }
 
@@ -34,11 +34,11 @@ const processNotifications = async () => {
 
     if (status && (status.state === "closed" || status.merged_at !== null)) {
       await markAsDone(notification.id);
-      console.log(`Marked as done: ${subject.title}`);
+      logger.info(`Marked as done: ${subject.title}`);
     }
   }
 
-  console.log("✅ Done processing notifications.");
+  logger.info("✅ Done processing notifications.");
 };
 
 module.exports = { processNotifications };

@@ -1,5 +1,5 @@
-import winston from "winston";
-import fs from "fs";
+const winston = require("winston");
+const fs = require("fs");
 
 const {
   createLogger,
@@ -31,4 +31,4 @@ const logger = createLogger({
   ],
 });
 
-export default logger;
+module.exports = logger;

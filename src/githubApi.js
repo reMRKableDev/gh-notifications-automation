@@ -1,4 +1,5 @@
 const { GITHUB_API, HEADERS } = require("./config");
+const logger = require("./logger");
 
 const fetchGitHub = async (url, options = {}) => {
   try {
@@ -8,13 +9,13 @@ const fetchGitHub = async (url, options = {}) => {
     });
 
     if (!response.ok) {
-      console.error(`GitHub API error: ${response.statusText} (URL: ${url})`);
+      logger.info(`GitHub API error: ${response.statusText} (URL: ${url})`);
       return null;
     }
 
     return response.json();
   } catch (error) {
-    console.error(`Failed to fetch GitHub API: ${error.message} (URL: ${url})`);
+    logger.info(`Failed to fetch GitHub API: ${error.message} (URL: ${url})`);
     return null;
   }
 };

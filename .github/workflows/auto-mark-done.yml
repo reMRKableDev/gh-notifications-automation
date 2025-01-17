@@ -27,6 +27,5 @@ jobs:
       - name: Run Automation Script
         run: node src/index.js
         env:
-          NODE_ENV: production
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_USERNAME: ${{ secrets.GH_USERNAME }}
