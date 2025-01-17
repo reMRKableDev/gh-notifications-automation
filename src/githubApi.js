@@ -11,13 +11,13 @@ const fetchGitHub = async (url, options = {}) => {
     });
 
     if (!response.ok) {
-      logger.info(`GitHub API error: ${response.statusText} (URL: ${url})`);
+      logger.error(`GitHub API error: ${response.statusText} (URL: ${url})`);
       return null;
     }
 
     return response.json();
   } catch (error) {
-    logger.info(`Failed to fetch GitHub API: ${error.message} (URL: ${url})`);
+    logger.error(`Failed to fetch GitHub API: ${error.message} (URL: ${url})`);
     return null;
   }
 };
