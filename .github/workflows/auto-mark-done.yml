@@ -8,6 +8,9 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      GITHUB_USERNAME: ${{ secrets.GH_USERNAME }}
 
     steps:
       - name: Checkout Repo
@@ -26,6 +29,3 @@ jobs:
 
       - name: Run Automation Script
         run: node src/index.js
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          GITHUB_USERNAME: ${{ secrets.GH_USERNAME }}
