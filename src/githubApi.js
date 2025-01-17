@@ -11,6 +11,7 @@ const fetchGitHub = async (url, options = {}) => {
     });
 
     if (!response.ok) {
+      logger.info("Response:", response);
       logger.error(`GitHub API error: ${response.statusText} (URL: ${url})`);
       return null;
     }
