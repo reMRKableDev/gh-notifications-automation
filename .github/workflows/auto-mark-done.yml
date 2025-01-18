@@ -8,9 +8,6 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GITHUB_USERNAME: ${{ secrets.GH_USERNAME }}
 
     steps:
       - name: Checkout Repo
