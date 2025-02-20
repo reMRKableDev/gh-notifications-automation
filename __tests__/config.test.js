@@ -9,8 +9,8 @@ describe("Config", () => {
 
   const setupEnv = (nodeEnv = "production") => {
     process.env.NODE_ENV = nodeEnv;
-    process.env.GITHUB_TOKEN = TEST_TOKEN;
-    process.env.GITHUB_USERNAME = TEST_USERNAME;
+    process.env.GH_PAT = TEST_TOKEN;
+    process.env.GH_USERNAME = TEST_USERNAME;
   };
 
   beforeEach(() => {
@@ -54,13 +54,13 @@ describe("Config", () => {
 
     test("should throw error if GH_PAT is missing", () => {
       testMissingVar(() => {
-        process.env.GITHUB_USERNAME = TEST_USERNAME;
+        process.env.GH_USERNAME = TEST_USERNAME;
       }, "GH_PAT environment variable is required");
     });
 
     test("should throw error if GH_USERNAME is missing", () => {
       testMissingVar(() => {
-        process.env.GITHUB_TOKEN = TEST_TOKEN;
+        process.env.GH_PAT = TEST_TOKEN;
       }, "GH_USERNAME environment variable is required");
     });
   });

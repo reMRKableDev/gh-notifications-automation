@@ -5,8 +5,8 @@ if (process.env.NODE_ENV !== "production") {
   dotenv.config({ silent: true }); // Won't throw if .env is missing
 }
 
-const GH_PAT = process.env.GITHUB_TOKEN;
-const GH_USERNAME = process.env.GITHUB_USERNAME;
+const GH_PAT = process.env.GH_PAT;
+const GH_USERNAME = process.env.GH_USERNAME;
 
 if (!GH_PAT) {
   throw new Error("GH_PAT environment variable is required");

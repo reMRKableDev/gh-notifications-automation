@@ -105,13 +105,6 @@ yarn coverage
 npm run coverage
 ```
 
-The repo is currently configured with the following coverage thresholds:
-
-- Branches: 100%
-- Functions: 100%
-- Lines: 100%
-- Statements: 100%
-
 ## 📝 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
