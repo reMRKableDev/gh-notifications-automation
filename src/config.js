@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== "production") {
 
 module.exports = {
   GITHUB_API: "https://api.github.com",
-  GITHUB_TOKEN: process.env.GH_TOKEN,
+  GH_PAT: process.env.GH_TOKEN,
   GITHUB_USERNAME: process.env.GH_USERNAME,
   HEADERS: {
     Authorization: `Bearer ${process.env.GH_TOKEN}`,
