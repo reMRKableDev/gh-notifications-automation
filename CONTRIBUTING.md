@@ -4,7 +4,7 @@ First off, thank you for considering contributing to this project! This is an op
 
 ## Code of Conduct
 
-By participating in this project, you agree to abide by our Code of Conduct (to be included in a separate file).
+By participating in this project, you agree to abide by the [CODE OF CONDUCT](CODE_OF_CONDUCT).
 
 ## How Can I Contribute?
 

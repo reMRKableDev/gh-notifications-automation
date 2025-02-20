@@ -27,13 +27,18 @@ The script uses the GitHub API to streamline the workflow for developers managin
    - Checks if the PR/Issue is closed or merged.
 3. Marks filtered notifications as done via the GitHub API.
 
+## 🔑 Prerequisites
+
+- Node.js (`lts` version)
+- GitHub Personal Access Token with `notifications` & `repo` scope
+- `npm` or `yarn` package manager
+
 ## 🛠️ Setup
 
 ### 1. Clone this repo
 
 ```bash
 git clone https://github.com/your-username/github-notifications-automation.git
-
 cd github-notifications-automation
 ```
 
@@ -104,6 +109,10 @@ yarn coverage
 # Using npm
 npm run coverage
 ```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read the [CONTRIBUTING GUIDE](CONTRIBUTING) for details on the code of conduct and the process for submitting pull requests.
 
 ## 📝 License
 
