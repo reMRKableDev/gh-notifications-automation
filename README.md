@@ -53,7 +53,7 @@ Create a `.env` file in the project root:
 
 ```plaintext
 GH_PAT=your-personal-access-token
-GITHUB_USERNAME=your-github-username
+GH_USERNAME=your-github-username
 ```
 
 **Note:** You can generate a Personal Access Token (PAT) with the notifications scope in your GitHub account settings.
