@@ -15,13 +15,11 @@ const processNotifications = async () => {
   for (const notification of notifications) {
     const { repository, subject } = notification;
 
-    // Skip notifications from organization-owned repos
     if (repository.owner.login !== GH_USERNAME) {
       logger.info(`Skipping ${repository.full_name} (not owned by you)`);
       continue;
     }
 
-    // Only process PRs and Issues
     if (subject.type !== "PullRequest" && subject.type !== "Issue") continue;
 
     const issueOrPrNumber = subject.url.split("/").pop();
