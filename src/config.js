@@ -1,8 +1,7 @@
 const dotenv = require("dotenv");
 
-// Try to load .env file if it exists and we're not in production
 if (process.env.NODE_ENV !== "production") {
-  dotenv.config({ silent: true }); // Won't throw if .env is missing
+  dotenv.config({ silent: true });
 }
 
 const GH_PAT = process.env.GH_PAT;
