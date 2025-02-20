@@ -4,10 +4,10 @@ if (process.env.NODE_ENV !== "production") {
 
 module.exports = {
   GITHUB_API: "https://api.github.com",
-  GH_PAT: process.env.GH_TOKEN,
-  GITHUB_USERNAME: process.env.GH_USERNAME,
+  GH_PAT: process.env.GITHUB_TOKEN,
+  GITHUB_USERNAME: process.env.GITHUB_USERNAME,
   HEADERS: {
-    Authorization: `Bearer ${process.env.GH_TOKEN}`,
+    Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
     Accept: "application/vnd.github.v3+json",
     "User-Agent": "GH-Notification-Automation",
   },
