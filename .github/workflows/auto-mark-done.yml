@@ -18,16 +18,21 @@ jobs:
         with:
           node-version: "lts/*"
 
-      - name: Log Current Time (Debugging)
-        run: date -u && date
-
       - name: Install Dependencies
         run: npm install
 
+      - name: Run Tests
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_USERNAME: ${{ secrets.GH_USERNAME }}
+          NODE_ENV: "production"
+        run: npm test
+
       - name: Run Automation Script
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-          GITHUB_USERNAME: ${{ secrets.GH_USERNAME }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_USERNAME: ${{ secrets.GH_USERNAME }}
+          NODE_ENV: "production"
         run: |
           echo "Token exists: ${{ secrets.GH_PAT != '' }}"
           echo "Username exists: ${{ secrets.GH_USERNAME != '' }}"

@@ -1,4 +1,4 @@
-const { GITHUB_USERNAME } = require("./config");
+const { GH_USERNAME } = require("./config");
 const {
   getNotifications,
   getIssueOrPRStatus,
@@ -16,7 +16,7 @@ const processNotifications = async () => {
     const { repository, subject } = notification;
 
     // Skip notifications from organization-owned repos
-    if (repository.owner.login !== GITHUB_USERNAME) {
+    if (repository.owner.login !== GH_USERNAME) {
       logger.info(`Skipping ${repository.full_name} (not owned by you)`);
       continue;
     }

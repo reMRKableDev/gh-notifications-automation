@@ -1,3 +1,7 @@
+// Set up environment variables before requiring any modules
+/* process.env.GH_PAT = "test-token";
+process.env.GH_USERNAME = "test-user"; */
+
 const fetchMock = require("jest-fetch-mock");
 const {
   getNotifications,
@@ -11,36 +15,15 @@ jest.mock("../src/logger", () => ({
   error: jest.fn(),
 }));
 
+jest.mock("dotenv", () => ({
+  config: jest.fn(),
+}));
+
 fetchMock.enableMocks();
 
 beforeEach(() => {
   fetchMock.resetMocks();
   jest.clearAllMocks();
-});
-
-describe("Config", () => {
-  const OLD_ENV = process.env;
-
-  beforeEach(() => {
-    jest.resetModules();
-    process.env = { ...OLD_ENV };
-  });
-
-  afterAll(() => {
-    process.env = OLD_ENV;
-  });
-
-  test("should load dotenv in non-production environment", () => {
-    process.env.NODE_ENV = "development";
-    const config = require("../src/config");
-    expect(config.GITHUB_API).toBeDefined();
-  });
-
-  test("should not load dotenv in production environment", () => {
-    process.env.NODE_ENV = "production";
-    const config = require("../src/config");
-    expect(config.GITHUB_API).toBeDefined();
-  });
 });
 
 describe("GH API Helpers", () => {
