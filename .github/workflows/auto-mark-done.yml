@@ -27,4 +27,8 @@ jobs:
       - name: Run Automation Script
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-        run: node src/index.js
+          GITHUB_USERNAME: ${{ secrets.GH_USERNAME }}
+        run: |
+          echo "Token exists: ${{ secrets.GH_PAT != '' }}"
+          echo "Username exists: ${{ secrets.GH_USERNAME != '' }}"
+          node src/index.js
