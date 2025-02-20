@@ -107,10 +107,10 @@ npm run coverage
 
 The repo is currently configured with the following coverage thresholds:
 
-- Branches: 80%
+- Branches: 100%
 - Functions: 100%
-- Lines: 90%
-- Statements: 90%
+- Lines: 100%
+- Statements: 100%
 
 ## 📝 License
 

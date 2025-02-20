@@ -1,6 +1,6 @@
 // Set up environment variables before requiring any modules
-/* process.env.GH_PAT = "test-token";
-process.env.GH_USERNAME = "test-user"; */
+process.env.GITHUB_TOKEN = "test-token";
+process.env.GITHUB_USERNAME = "test-user";
 
 const fetchMock = require("jest-fetch-mock");
 const {
