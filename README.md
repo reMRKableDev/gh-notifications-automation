@@ -109,7 +109,7 @@ The repo is currently configured with the following coverage thresholds:
 
 - Branches: 80%
 - Functions: 100%
-- Lines: 89%
+- Lines: 90%
 - Statements: 90%
 
 ## 📝 License

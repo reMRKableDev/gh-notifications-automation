@@ -4,11 +4,43 @@ const {
   getIssueOrPRStatus,
   markAsDone,
 } = require("../src/githubApi");
+const logger = require("../src/logger");
+
+jest.mock("../src/logger", () => ({
+  info: jest.fn(),
+  error: jest.fn(),
+}));
 
 fetchMock.enableMocks();
 
 beforeEach(() => {
   fetchMock.resetMocks();
+  jest.clearAllMocks();
+});
+
+describe("Config", () => {
+  const OLD_ENV = process.env;
+
+  beforeEach(() => {
+    jest.resetModules();
+    process.env = { ...OLD_ENV };
+  });
+
+  afterAll(() => {
+    process.env = OLD_ENV;
+  });
+
+  test("should load dotenv in non-production environment", () => {
+    process.env.NODE_ENV = "development";
+    const config = require("../src/config");
+    expect(config.GITHUB_API).toBeDefined();
+  });
+
+  test("should not load dotenv in production environment", () => {
+    process.env.NODE_ENV = "production";
+    const config = require("../src/config");
+    expect(config.GITHUB_API).toBeDefined();
+  });
 });
 
 describe("GH API Helpers", () => {
@@ -18,6 +50,20 @@ describe("GH API Helpers", () => {
 
       const notifications = await getNotifications();
       expect(notifications).toBeNull();
+      expect(logger.info).toHaveBeenCalledWith("Response:", expect.any(Object));
+      expect(logger.error).toHaveBeenCalledWith(
+        expect.stringContaining("GitHub API error")
+      );
+    });
+
+    test("should handle network errors", async () => {
+      fetchMock.mockReject(new Error("Network error"));
+
+      const notifications = await getNotifications();
+      expect(notifications).toBeNull();
+      expect(logger.error).toHaveBeenCalledWith(
+        expect.stringContaining("Failed to fetch GitHub API")
+      );
     });
 
     test("should successfully return notifications", async () => {
@@ -39,6 +85,19 @@ describe("GH API Helpers", () => {
 
       const status = await getIssueOrPRStatus("owner", "repo", "42", "pulls");
       expect(status).toBeNull();
+      expect(logger.error).toHaveBeenCalledWith(
+        expect.stringContaining("GitHub API error")
+      );
+    });
+
+    test("should handle network errors", async () => {
+      fetchMock.mockReject(new Error("Network error"));
+
+      const status = await getIssueOrPRStatus("owner", "repo", "42", "pulls");
+      expect(status).toBeNull();
+      expect(logger.error).toHaveBeenCalledWith(
+        expect.stringContaining("Failed to fetch GitHub API")
+      );
     });
 
     test("should return issue status", async () => {
@@ -66,6 +125,19 @@ describe("GH API Helpers", () => {
 
       await markAsDone("123");
       expect(fetchMock).toHaveBeenCalled();
+      expect(logger.error).toHaveBeenCalledWith(
+        expect.stringContaining("GitHub API error")
+      );
+    });
+
+    test("should handle network errors when marking as done", async () => {
+      fetchMock.mockReject(new Error("Network error"));
+
+      await markAsDone("123");
+      expect(fetchMock).toHaveBeenCalled();
+      expect(logger.error).toHaveBeenCalledWith(
+        expect.stringContaining("Failed to fetch GitHub API")
+      );
     });
 
     test("should call GitHub API", async () => {
