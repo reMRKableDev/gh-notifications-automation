@@ -120,6 +120,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-Let me know if you'd like me to adjust anything further! 😊
-
 Made with ❤️ by [reMRKable Dev](https://remrkabledev.com)
