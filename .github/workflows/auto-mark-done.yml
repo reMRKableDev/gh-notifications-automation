@@ -28,12 +28,14 @@ jobs:
           NODE_ENV: "production"
         run: npm test
 
-      - name: Run Automation Script
+      - name: Run Automation Script with Debug
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
           GH_USERNAME: ${{ secrets.GH_USERNAME }}
           NODE_ENV: "production"
+          NODE_OPTIONS: "--trace-warnings"
         run: |
           echo "Token exists: ${{ secrets.GH_PAT != '' }}"
           echo "Username exists: ${{ secrets.GH_USERNAME != '' }}"
-          node src/index.js
+          echo "Current timestamp: $(date -u)"
+          node --unhandled-rejections=strict src/index.js

@@ -28,16 +28,29 @@ const TEST_VALUES = {
   type: "Issue",
 };
 
-const testApiError = async (apiCall, errorType = "GitHub API error") => {
+const testApiError = async (apiCall) => {
   fetchMock.mockResponseOnce("", { status: 500 });
 
   const result = await apiCall();
   expect(result).toBeNull();
+  expect(logger.info).toHaveBeenCalledWith("Response:", expect.any(Object));
+  expect(logger.error).toHaveBeenCalledWith(
+    expect.stringContaining("GitHub API error")
+  );
+};
 
-  if (errorType === "GitHub API error") {
-    expect(logger.info).toHaveBeenCalledWith("Response:", expect.any(Object));
-  }
-  expect(logger.error).toHaveBeenCalledWith(expect.stringContaining(errorType));
+const testEmptyResponse = async (apiCall) => {
+  fetchMock.mockResponseOnce("", { status: 200 });
+
+  const result = await apiCall();
+  expect(result).toBeNull();
+};
+
+const testInvalidJson = async (apiCall) => {
+  fetchMock.mockResponseOnce("Not valid JSON", { status: 200 });
+
+  const result = await apiCall();
+  expect(result).toBeNull();
 };
 
 const testNetworkError = async (apiCall) => {
@@ -57,12 +70,20 @@ beforeEach(() => {
 
 describe("GH API Helpers", () => {
   describe("getNotifications", () => {
-    test("should return empty array when API returns non-200 status", async () => {
+    test("should return null when API returns non-200 status", async () => {
       await testApiError(() => getNotifications());
     });
 
     test("should handle network errors", async () => {
       await testNetworkError(() => getNotifications());
+    });
+
+    test("should handle empty responses", async () => {
+      await testEmptyResponse(() => getNotifications());
+    });
+
+    test("should handle invalid JSON responses", async () => {
+      await testInvalidJson(() => getNotifications());
     });
 
     test("should successfully return notifications", async () => {
@@ -73,6 +94,9 @@ describe("GH API Helpers", () => {
       );
 
       const notifications = await getNotifications();
+      expect(logger.info).toHaveBeenCalledWith(
+        expect.stringContaining("Response body length:")
+      );
       expect(notifications.length).toBe(1);
       expect(notifications[0].subject.type).toBe(TEST_VALUES.type);
     });
@@ -97,6 +121,14 @@ describe("GH API Helpers", () => {
       await testNetworkError(makeStatusCall());
     });
 
+    test("should handle empty responses", async () => {
+      await testEmptyResponse(makeStatusCall());
+    });
+
+    test("should handle invalid JSON responses", async () => {
+      await testInvalidJson(makeStatusCall());
+    });
+
     const testStatusType = async (type, state) => {
       fetchMock.mockResponseOnce(JSON.stringify({ state }));
 
@@ -105,6 +137,9 @@ describe("GH API Helpers", () => {
         TEST_VALUES.repo,
         TEST_VALUES.issueNumber,
         type
+      );
+      expect(logger.info).toHaveBeenCalledWith(
+        expect.stringContaining("Response body length:")
       );
       expect(status.state).toBe(state);
     };
@@ -127,6 +162,14 @@ describe("GH API Helpers", () => {
       await testNetworkError(() => markAsDone(TEST_VALUES.threadId));
     });
 
+    test("should handle empty responses", async () => {
+      await testEmptyResponse(() => markAsDone(TEST_VALUES.threadId));
+    });
+
+    test("should handle invalid JSON responses", async () => {
+      await testInvalidJson(() => markAsDone(TEST_VALUES.threadId));
+    });
+
     test("should call GitHub API", async () => {
       fetchMock.mockResponseOnce(JSON.stringify({}));
 
@@ -136,6 +179,9 @@ describe("GH API Helpers", () => {
           `/notifications/threads/${TEST_VALUES.threadId}`
         ),
         expect.objectContaining({ method: "PATCH" })
+      );
+      expect(logger.info).toHaveBeenCalledWith(
+        expect.stringContaining("Response body length:")
       );
     });
   });

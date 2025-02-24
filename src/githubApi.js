@@ -10,11 +10,29 @@ const fetchGitHub = async (url, options = {}) => {
 
     if (!response.ok) {
       logger.info("Response:", response);
+      logger.info(
+        "Response headers:",
+        JSON.stringify([...response.headers.entries()])
+      );
       logger.error(`GitHub API error: ${response.statusText} (URL: ${url})`);
       return null;
     }
 
-    return response.json();
+    const text = await response.text();
+    logger.info(`Response body length: ${text.length}`);
+
+    if (!text || text.trim() === "") {
+      logger.error(`Empty response from GitHub API (URL: ${url})`);
+      return null;
+    }
+
+    try {
+      return JSON.parse(text);
+    } catch (parseError) {
+      logger.error(`JSON parse error: ${parseError.message}`);
+      logger.info(`Response text: ${text.substring(0, 100)}...`);
+      return null;
+    }
   } catch (error) {
     logger.error(`Failed to fetch GitHub API: ${error.message} (URL: ${url})`);
     return null;
