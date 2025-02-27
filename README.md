@@ -1,6 +1,6 @@
 # GitHub Notifications Automation 🚀
 
-[![Mark Notifications as Read](https://github.com/reMRKableDev/gh-notifications-automation/actions/workflows/auto-mark-done.yml/badge.svg)](https://github.com/reMRKableDev/gh-notifications-automation/actions/workflows/auto-mark-done.yml)
+[![Mark Notifications as Read](https://github.com/reMRKableDev/gh-notifications-automation/actions/workflows/auto-mark-read.yml/badge.svg)](https://github.com/reMRKableDev/gh-notifications-automation/actions/workflows/auto-mark-read.yml)
 [![tests](https://github.com/reMRKableDev/react-omdb-api/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/reMRKableDev/react-omdb-api/actions/workflows/test-coverage.yml)
 [![codecov](https://codecov.io/gh/reMRKableDev/gh-notifications-automation/graph/badge.svg?token=ZcOwgC81Pw)](https://codecov.io/gh/reMRKableDev/gh-notifications-automation)
 
