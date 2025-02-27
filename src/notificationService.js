@@ -2,7 +2,7 @@ const { GH_USERNAME } = require("./config");
 const {
   getNotifications,
   getIssueOrPRStatus,
-  markAsDone,
+  markAsRead,
 } = require("./githubApi");
 const logger = require("./logger");
 
@@ -31,7 +31,7 @@ const processNotifications = async () => {
     );
 
     if (status && (status.state === "closed" || status.merged_at !== null)) {
-      await markAsDone(notification.id);
+      await markAsRead(notification.id);
       logger.info(`Marked as done: ${subject.title}`);
     }
   }

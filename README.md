@@ -1,10 +1,10 @@
 # GitHub Notifications Automation 🚀
 
-[![Mark Notifications as Done](https://github.com/reMRKableDev/gh-notifications-automation/actions/workflows/auto-mark-done.yml/badge.svg)](https://github.com/reMRKableDev/gh-notifications-automation/actions/workflows/auto-mark-done.yml)
+[![Mark Notifications as Read](https://github.com/reMRKableDev/gh-notifications-automation/actions/workflows/auto-mark-done.yml/badge.svg)](https://github.com/reMRKableDev/gh-notifications-automation/actions/workflows/auto-mark-done.yml)
 [![tests](https://github.com/reMRKableDev/react-omdb-api/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/reMRKableDev/react-omdb-api/actions/workflows/test-coverage.yml)
 [![codecov](https://codecov.io/gh/reMRKableDev/gh-notifications-automation/graph/badge.svg?token=ZcOwgC81Pw)](https://codecov.io/gh/reMRKableDev/gh-notifications-automation)
 
-This repo contains a script that automates the process of checking GitHub notifications and marking merged or closed PRs/issues as **_"done."_**
+This repo contains a script that automates the process of checking GitHub notifications and marking merged or closed PRs/issues as **_"read."_**
 
 The script uses the GitHub API to streamline the workflow for developers managing large volumes of notifications.
 
@@ -14,7 +14,7 @@ The script uses the GitHub API to streamline the workflow for developers managin
 - Filters notifications for:
   - Closed Issues
   - Merged Pull Requests
-- Marks processed notifications as "done."
+- Marks processed notifications as "read."
 - Skips notifications for organization-owned repositories (processes only personal repositories).
 - Fully automated via GitHub Actions.
 

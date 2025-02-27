@@ -5,7 +5,7 @@ const fetchMock = require("jest-fetch-mock");
 const {
   getNotifications,
   getIssueOrPRStatus,
-  markAsDone,
+  markAsRead,
 } = require("../src/githubApi");
 const logger = require("../src/logger");
 
@@ -153,27 +153,27 @@ describe("GH API Helpers", () => {
     });
   });
 
-  describe("markAsDone", () => {
+  describe("markAsRead", () => {
     test("should handle API errors gracefully when marking as done", async () => {
-      await testApiError(() => markAsDone(TEST_VALUES.threadId));
+      await testApiError(() => markAsRead(TEST_VALUES.threadId));
     });
 
     test("should handle network errors when marking as done", async () => {
-      await testNetworkError(() => markAsDone(TEST_VALUES.threadId));
+      await testNetworkError(() => markAsRead(TEST_VALUES.threadId));
     });
 
     test("should handle empty responses", async () => {
-      await testEmptyResponse(() => markAsDone(TEST_VALUES.threadId));
+      await testEmptyResponse(() => markAsRead(TEST_VALUES.threadId));
     });
 
     test("should handle invalid JSON responses", async () => {
-      await testInvalidJson(() => markAsDone(TEST_VALUES.threadId));
+      await testInvalidJson(() => markAsRead(TEST_VALUES.threadId));
     });
 
     test("should call GitHub API", async () => {
       fetchMock.mockResponseOnce(JSON.stringify({}));
 
-      await markAsDone(TEST_VALUES.threadId);
+      await markAsRead(TEST_VALUES.threadId);
       expect(fetchMock).toHaveBeenCalledWith(
         expect.stringContaining(
           `/notifications/threads/${TEST_VALUES.threadId}`

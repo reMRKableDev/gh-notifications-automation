@@ -1,4 +1,4 @@
-name: Mark Notifications as Done
+name: Mark Notifications as Read
 
 on:
   schedule:

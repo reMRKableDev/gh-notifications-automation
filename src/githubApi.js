@@ -44,7 +44,7 @@ const getNotifications = async () => fetchGitHub("/notifications");
 const getIssueOrPRStatus = async (repoOwner, repoName, issueOrPrNumber, type) =>
   fetchGitHub(`/repos/${repoOwner}/${repoName}/${type}/${issueOrPrNumber}`);
 
-const markAsDone = (threadId) =>
+const markAsRead = (threadId) =>
   fetchGitHub(`/notifications/threads/${threadId}`, { method: "PATCH" });
 
-module.exports = { getNotifications, getIssueOrPRStatus, markAsDone };
+module.exports = { getNotifications, getIssueOrPRStatus, markAsRead };
